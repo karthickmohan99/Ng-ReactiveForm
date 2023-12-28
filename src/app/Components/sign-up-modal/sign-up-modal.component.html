@@ -1,0 +1,204 @@
+<ng-template #content let-modal >
+  <div class="modal-header">
+    
+      <h3 class="modal-title ">Sign Up </h3>
+      <!-- <h6 class="modal-subtitle">It's quick and easy</h6> -->
+  
+ 
+    
+    
+    <button type="button" class="btn-close" (click)="modal.dismiss()"></button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="signupForm">
+      <div class="form-group mb-3 row g-1">
+		<div class="col col me-1">
+
+			<input
+          type="text"
+          class="form-control "
+          formControlName="firstName"
+          placeholder="FirstName"
+		  [ngClass]="{'is-valid': f['firstName'].valid && f['firstName'].touched, 'is-invalid': f['firstName'].invalid && f['firstName'].touched}"
+        />
+		<div class=" text-danger mt-2" [hidden]="!(f['firstName'].dirty && f['firstName'].errors?.['required'])">
+			Enter FirstName
+    </div>
+	 <div class=" text-danger mt-2" [hidden]="!(f['firstName'].dirty && f['firstName'].errors?.['minlength'])">
+		 Minimum 6 characters needed for UserName
+   </div>
+		</div>
+        
+		<div class="col ms-1">
+			<input
+          type="text"
+          class="form-control  "
+          formControlName="lastName"
+          placeholder="LastName"
+		  [ngClass]="{'is-valid': f['lastName'].valid && f['lastName'].touched, 'is-invalid': f['lastName'].invalid && f['lastName'].touched}"
+        />
+        <div class=" text-danger mt-2" [hidden]="!(f['lastName'].dirty && f['lastName'].errors?.['required'])">
+          Enter LastName
+        </div>
+       <div class=" text-danger mt-2" [hidden]="!(f['lastName'].dirty && f['lastName'].errors?.['minlength'])">
+         Minimum 6 characters needed for LastName
+       </div>
+		</div>
+        
+      </div>
+      <div class="form-group mb-3 row g-2">
+        <input
+          type="number"
+          class="form-control"
+          formControlName="mobileNumber"
+          placeholder="Mobile number"
+		  [ngClass]="{'is-valid': f['mobileNumber'].valid && f['mobileNumber'].touched, 'is-invalid': f['mobileNumber'].invalid && f['mobileNumber'].touched}"
+        />
+        <div class=" text-danger mt-2" [hidden]="!(f['mobileNumber'].dirty && f['mobileNumber'].errors?.['required'])">
+          Enter Mobile Number
+        </div>
+       <div class=" text-danger mt-2" [hidden]="!(f['mobileNumber'].dirty && f['mobileNumber'].errors?.['pattern'])">
+        Mobile Number must be not more than or less than 10-Digits.
+       </div>
+        
+      </div>
+      <div class="form-group mb-3 row g-2">
+        <input
+          type="password"
+          class="form-control"
+          formControlName="password"
+          placeholder="password"
+		  [ngClass]="{'is-valid': f['password'].valid && f['password'].touched, 'is-invalid': f['password'].invalid && f['password'].touched}"
+        />
+        <div class=" text-danger mt-2" [hidden]="!(f['password'].dirty && f['password'].errors?.['required'])">
+          Password Must be Required
+        </div>
+        <div class="text-red-400 text-sm" *ngIf="f['password']?.dirty && f['password'].errors?.['pattern']">
+
+          <span class="block" [ngClass]="{'text-primary': f['password']?.value?.match('^(?=.*[A-Z])')}">At least uppercase letter.</span>
+       
+          <span class="block" [ngClass]="{'text-primary': f['password']?.value?.match('(?=.*[a-z])')}">At least one lowercase letter.</span>
+       
+          <span class="block" [ngClass]="{'text-primary': f['password']?.value?.match('(.*[0-9].*)')}">At least one digit.</span>
+       
+          <span class="block" [ngClass]="{'text-primary': f['password']?.value?.match('(?=.*[!@#$%^&*])')}">At least one special character.</span>
+       
+          <span class="block" [ngClass]="{'text-primary': f['password']?.value?.match('.{8,}')}">At least 8 characters long.</span>
+       
+       </div>
+        
+      </div>
+      
+      <div class="form-group mb-3 row g-2">
+        <label for="datePicker" class="form-label mb-0">Date of birth</label>
+        <div class="input-group">
+          <input
+            type="text"
+            class="form-control"
+            id="datePicker"
+            formControlName="dob"
+            ngbDatepicker
+            #d="ngbDatepicker"
+            [placement]="placement"
+            [positionTarget]="buttonEl"
+            placeholder="yyyy-mm-dd"
+			[ngClass]="{'is-valid': f['dob'].valid && f['dob'].touched, 'is-invalid': f['dob'].invalid && f['dob'].touched}"
+          />
+          <button
+            #buttonEl
+            class="btn btn-outline-secondary bi bi-calendar3"
+            (click)="d.toggle()"
+            type="button"
+          ></button>
+        </div>
+      </div>
+      <div class="form-group mb-3 g-2 row">
+        <label class="d-block">Gender:</label>
+		<div class="form-check form-check-inline col form-control">
+			<input
+				class="form-check-input ms-1"
+				type="radio"
+				formControlName="gender"
+				value="male"
+				required
+				id="gender_male" 
+				checked
+			/>
+			<label class="form-check-label px-2" for="gender_male">Male</label>
+		</div>
+		
+        <div class="form-check form-check-inline col form-control">
+			<label class="form-check-label px-2" for="gender_female">Female</label>
+          <input
+            class="form-check-input ms-1"
+            type="radio"
+            formControlName="gender"
+            value="female"
+            required
+          />
+         
+        </div>
+        <div class="form-check form-check-inline col form-control">
+			<label class="form-check-label px-2" for="gender_female">Custom</label>
+          <input
+            class="form-check-input ms-1"
+            type="radio"
+            formControlName="gender"
+            value="Custom"
+            required
+          />
+          
+        </div>
+        <!-- <div *ngIf="submitted && f['gender'].invalid"
+                                                class="text-danger">
+                                                Gender is required.
+                                            </div> -->
+      </div>
+    </form>
+  </div>
+  <div class="mt-1 mb-3 ms-3">
+    <p class="fs-6 paraone text-secondary">Please who use our service may have uploaded your contact information to our site.</p>
+    <p class="fs-6 ml-3 text-secondary">By clicking Sign Up, you agree to our <span class="text-primary">Terms, Data Policy  Cookie Policy.</span> and <span class="text-primary">Cookie Policy.</span><br>You may receive SMS notifications from us and can opt out at any time.</p>
+    <button
+      type="button"
+      class="btn btn-success col-4  d-block mx-auto"
+      (click)="modal.close('Save click')"
+	  [disabled]="signupForm.invalid"
+    >
+      Sign Up
+    </button>
+  </div>
+</ng-template>
+<div *ngIf="submitted" class="overlay">
+  <div class="confetti-container" id="confetti"></div>
+</div>
+<div class="d-flex flex-column align-items-center justify-content-center vh-100 ">
+  
+  <button *ngIf="!submitted" class="btn  col-1  btn-dark" (click)="open(content)" data-backdrop="static" data-keyboard="false">
+    Sign Up
+  </button>
+  <h3 *ngIf="submitted">Registration Complete !</h3>
+
+  <!-- <button *ngIf="submitted" type="button" class="btn btn-link " (click)="open(content)">Go to Register</button> -->
+
+
+</div>
+
+
+
+
+<!--Aria-label = for screen readers to indicate users with disabilities about the element-->
+<!--aria-hidden = "true" element will be ignored by screen readers because aria-hidden is set to "true." used only for Visual-Only Content-->
+
+<!-- <div class="form-group">
+	<label for="LName" class="form-label">Password:</label>
+	<input class="form-control" [ngClass]="{'is-valid': f.Password.valid && f.Password.touched, 'is-invalid': f.Password.invalid && f.Password.touched}"
+
+	formControlName="Password"  type="password" name="Password" >
+	<div class="alert alert-danger" [hidden]="!(f.Password.dirty && f.Password.errors?.['required'])">
+			   Enter Password
+	</div>
+	<div class="alert alert-danger" [hidden]="!((f.Password.touched||f.Password.dirty) && f.Password.errors?.['minlength'])">
+		Minimum 6 characters needed for Password
+	</div>
+</div> -->
