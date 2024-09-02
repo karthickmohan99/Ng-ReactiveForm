@@ -1,0 +1,10 @@
+.field{
+    position: relative;
+}
+
+.inputGroup .field .eye{
+  position: absolute;
+  bottom: 11px;
+  right: 30px;
+  
+}

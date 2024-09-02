@@ -6,18 +6,27 @@ import { AppComponent } from './app.component';
 import { SignUpModalComponent } from './Components/sign-up-modal/sign-up-modal.component';
 import { NgbDatepickerModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { ReactiveFormssComponent } from './reactive-formss/reactive-formss.component';
+import { TableComponent } from './Components/table/table.component'
+import { HttpClientModule } from '@angular/common/http';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';  
 @NgModule({
   declarations: [
     AppComponent,
-    SignUpModalComponent
+    SignUpModalComponent,
+    ReactiveFormssComponent,
+    TableComponent
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule, 
     AppRoutingModule,
     NgbModule,
     ReactiveFormsModule,
-    NgbDatepickerModule
+    HttpClientModule,
+    NgbDatepickerModule,
+    ToastrModule.forRoot()  
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -11,7 +11,7 @@
   </div>
   <div class="modal-body">
     <form [formGroup]="signupForm">
-      <div class="form-group mb-3 row g-1">
+      <div class=" mb-3 row g-1">
 		<div class="col col me-1">
 
 			<input
@@ -46,7 +46,7 @@
 		</div>
         
       </div>
-      <div class="form-group mb-3 row g-2">
+      <div class=" mb-3 row g-2">
         <input
           type="number"
           class="form-control"
@@ -62,7 +62,7 @@
        </div>
         
       </div>
-      <div class="form-group mb-3 row g-2">
+      <div class=" mb-3 row g-2">
         <input
           type="password"
           class="form-control"
@@ -87,9 +87,10 @@
        
        </div>
         
+       
       </div>
       
-      <div class="form-group mb-3 row g-2">
+      <div class=" mb-3 row g-2">
         <label for="datePicker" class="form-label mb-0">Date of birth</label>
         <div class="input-group">
           <input
@@ -112,7 +113,7 @@
           ></button>
         </div>
       </div>
-      <div class="form-group mb-3 g-2 row">
+      <div class=" mb-3 g-2 row">
         <label class="d-block">Gender:</label>
 		<div class="form-check form-check-inline col form-control">
 			<input
@@ -159,24 +160,32 @@
   <div class="mt-1 mb-3 ms-3">
     <p class="fs-6 paraone text-secondary">Please who use our service may have uploaded your contact information to our site.</p>
     <p class="fs-6 ml-3 text-secondary">By clicking Sign Up, you agree to our <span class="text-primary">Terms, Data Policy  Cookie Policy.</span> and <span class="text-primary">Cookie Policy.</span><br>You may receive SMS notifications from us and can opt out at any time.</p>
+    <div class="d-flex justify-content-around">
     <button
       type="button"
-      class="btn btn-success col-4  d-block mx-auto"
+      class="btn btn-success col-4  "
       (click)="modal.close('Save click')"
 	  [disabled]="signupForm.invalid"
     >
       Sign Up
     </button>
+    <button *ngIf="!submitted" class="btn  btn-dark  col-4   " (click)="patchValue()" data-backdrop="static" data-keyboard="false">
+      Patch Value
+    </button>
+  </div>
   </div>
 </ng-template>
+<!-- confetti -->
 <div *ngIf="submitted" class="overlay">
   <div class="confetti-container" id="confetti"></div>
 </div>
+<!--Signup button-->
 <div class="d-flex flex-column align-items-center justify-content-center vh-100 ">
   
-  <button *ngIf="!submitted" class="btn  col-1  btn-dark" (click)="open(content)" data-backdrop="static" data-keyboard="false">
+  <button *ngIf="!submitted" class="btn  col-1  btn-dark" (click)="open(content)" data-backdrop="static" >
     Sign Up
   </button>
+
   <h3 *ngIf="submitted">Registration Complete !</h3>
 
   <!-- <button *ngIf="submitted" type="button" class="btn btn-link " (click)="open(content)">Go to Register</button> -->
@@ -190,7 +199,7 @@
 <!--Aria-label = for screen readers to indicate users with disabilities about the element-->
 <!--aria-hidden = "true" element will be ignored by screen readers because aria-hidden is set to "true." used only for Visual-Only Content-->
 
-<!-- <div class="form-group">
+<!-- <div class="">
 	<label for="LName" class="form-label">Password:</label>
 	<input class="form-control" [ngClass]="{'is-valid': f.Password.valid && f.Password.touched, 'is-invalid': f.Password.invalid && f.Password.touched}"
 

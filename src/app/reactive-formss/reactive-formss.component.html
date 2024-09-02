@@ -1,0 +1,90 @@
+<div class="container   d-flex align-items-center justify-content-center " style="height: 100vh;">
+
+    <form (ngSubmit)="onSubmit()" [formGroup]="SignupForm"
+        class="w-75 border border-2 border-dark rounded shadow-lg p-4"
+        style="background-color: rgba(112, 116, 117, 0.525);">
+        <h2  class="text-center mb-3 text-black-50"> {{ isUpdateStatus ? 'Update Information' : 'Register Here' }}</h2>
+        <div class="row row-cols-2">
+            <div class="mb-3 col">
+                <label for="fName">EmpName</label>
+                <input class="form-control" formControlName="empName" id="fName" type="text" #firstName
+                    [ngClass]="{'is-valid':f['empName'].touched && f['empName'].valid , 'is-invalid':f['empName'].touched && f['empName'].invalid}"  >
+                <div class="text-danger" *ngIf="f['empName'].dirty&& f['empName'].errors?.['required']">
+                    FirstName is Required
+                </div>
+            </div>
+            <div class="mb-3 col">
+                <label for="lName">EmployeeDesignation</label>
+                <input class="form-control" formControlName="empDesignation" id="lName" type="text"
+                    [ngClass]="{'is-valid':f['empDesignation'].touched && f['empDesignation'].valid , 'is-invalid':f['empDesignation'].touched && f['empDesignation'].invalid}">
+                <div class="text-danger" *ngIf="f['empDesignation'].dirty&& f['empDesignation'].errors?.['required']">
+                    Last Name is Required
+                </div>
+            </div>
+            <div class="mb-3 col">
+                <label for="eDept">EmployeeDepartment</label>
+                <input class="form-control" formControlName="empDepartment" id="eDept" type="text"
+                    [ngClass]="{'is-valid':f['empDepartment'].touched && f['empDepartment'].valid , 'is-invalid':f['empDepartment'].touched && f['empDepartment'].invalid}">
+                <div class="text-danger" *ngIf="f['empDepartment'].dirty&& f['empDepartment'].errors?.['required']">
+                    EmployeeDepartment is Required
+                </div>
+            </div>
+            <div class="mb-3 col">
+                <label for="email">EmpMail</label>
+                <input class="form-control" formControlName="empMail" id="email" type="email"
+                    [ngClass]="{'is-valid':f['empMail'].touched && f['empMail'].valid , 'is-invalid':f['empMail'].touched && f['empMail'].invalid}">
+                <div class="text-danger" *ngIf="f['empMail'].dirty&& f['empMail'].errors?.['required']">
+                    Email is Required
+                </div>
+                <div class="text-danger" *ngIf="f['empMail'].dirty&& f['empMail'].errors?.['email']">
+                    Enter a valid form of mail id.
+                </div>
+            </div>
+            <div class="mb-3 col">
+                <label for="mobile">EmpPhoneNumber</label>
+                <input class="form-control" formControlName="empPhoneNumber" id="mobile" type="text"
+                    [ngClass]="{'is-valid':f['empPhoneNumber'].touched && f['empPhoneNumber'].valid , 'is-invalid':f['empPhoneNumber'].touched && f['empPhoneNumber'].invalid}">
+                <div class="text-danger" *ngIf="f['empPhoneNumber'].dirty&& f['empPhoneNumber'].errors?.['required']">
+                    Mobile Number is required.
+                </div>
+                <div class="text-danger" *ngIf="f['empPhoneNumber'].dirty&& f['empPhoneNumber'].errors?.['pattern']">
+                    Enter 10 digit
+                </div>
+            </div>
+            <div class="mb-3 inputGroup" [hidden]="isUpdateStatus">
+                <label for="ps">Password</label>
+                <div class="field">
+                <input class="form-control" formControlName="ps" id="ps" [type]="showPassword?'text':'password'" [ngClass]="{'is-valid':f['ps'].touched && f['ps'].valid , 'is-invalid':f['ps'].touched && f['ps'].invalid}">
+                <i (click)="toggleShow()" class="fa-solid fa-eye eye" *ngIf="!showPassword" ></i>
+                <i  (click)="toggleShow()"  class="fa-solid fa-eye-slash eye" *ngIf="showPassword"></i>
+            </div>
+                <div class="text-danger" *ngIf="f['ps'].dirty&& f['ps'].errors?.['required']">
+                    Passsword is required
+
+                </div>
+                <div class="text-danger" *ngIf="f['ps'].dirty&& f['ps'].errors?.['pattern']">
+                    Invalid Password
+
+                </div>
+            </div>
+            <div class="mb-3" [hidden]="isUpdateStatus">
+                <label for="cps">Confirm Password</label>
+                <input class="form-control" formControlName="conformPs" id="cps" type="password"
+                    [ngClass]="{'is-valid':f['conformPs'].touched && f['conformPs'].valid , 'is-invalid':f['conformPs'].touched && f['conformPs'].invalid}">
+                <div class="text-danger" *ngIf="f['conformPs'].dirty&& f['conformPs'].errors?.['required']">
+                    Confirm Passsword is required
+                </div>
+                <div class="text-danger" *ngIf="f['conformPs'].touched&& this.SignupForm.errors?.['PasswordNoMatch']">
+                    Password does'nt match.
+                </div>
+
+            </div>
+            <button *ngIf="!isUpdateStatus else updateButton" class="btn btn-dark col-sm-4 mx-auto" [disabled]="SignupForm.invalid">Press Here</button>
+            <ng-template #updateButton>
+                <button  class="btn btn-dark col-sm-4 mx-auto"[disabled]="SignupForm.invalid" >Update Here</button>
+            </ng-template>
+            
+        </div>
+    </form>
+</div>
+

@@ -40,6 +40,19 @@ export class SignUpModalComponent implements OnInit {
 	
 
 	}
+objectForPatch={
+	firstName:'Admin',
+	lastName:'Admin',
+	mobileNumber:7875653457,
+}
+	patchValue(){
+		this.signupForm.patchValue(
+			this.objectForPatch
+		
+
+		)
+	}
+
   
 
    
@@ -81,6 +94,8 @@ export class SignUpModalComponent implements OnInit {
 				console.log("saved")
 				this.closeResult = result;
 				this.signupForm.reset();
+				console.log(this.signupForm);
+				console.log(this.closeResult)
 				this.submitted=true;
 				this.showConfetti();
 				

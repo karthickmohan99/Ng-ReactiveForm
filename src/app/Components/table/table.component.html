@@ -1,0 +1,71 @@
+<nav class="navbar navbar-dark bg-dark">
+    <div class="container-fluid justify-content-spa">
+      <span class="navbar-brand mb-0 h1">EMS</span>
+      <button class="btn btn-sm btn-outline-light" type="button" [routerLink]="'/form'">LogOut</button>
+    </div>
+  </nav>
+
+  <div class="container-fluid mt-3">
+    <table class="table" *ngIf='!isUpdate; else elseBlock'>
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Department</th>
+                <th scope="col">Designation</th>
+                <th scope="col">Email</th>
+                <th scope="col">Mobile</th>
+                <th scope="col">Remove</th>
+                <th scope="col">Update</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!--index is special variable provided by angular-->
+            <!--It holds the current index of the item being iterated over, starting from 0.-->
+            <!--Context variables used with angular= first, last,even,odd-->
+            <tr *ngFor="let e of empData, let i = index" >
+                <th scope="row">{{i+1}}</th>
+                <td>{{e.empName}}</td>
+                <td>{{e.empDepartment}}</td>
+                <td>{{e.empDesignation}}</td>
+                <td>{{e.empMail}}</td>
+                <td>{{e.empPhoneNumber}}</td>
+                
+                <td>
+                    <button class="btn btn-dark "data-bs-toggle="modal" data-bs-target="#staticBackdrop" #\
+                    
+                    (click)="onDelete(e.id)" >Delete</button> 
+                   
+                </td>
+                <td > <button class="btn btn-warning" (click)="onUpdate(e.id)">Update</button></td>
+    
+            </tr>
+        </tbody>
+    </table>
+    
+    <ng-template #elseBlock>
+       <app-reactive-formss [isUpdateStatus]="isUpdate" [updatedId]="id"></app-reactive-formss>
+    </ng-template>
+  </div>
+
+
+<!-- *ngFor="let f of formData$|async,let i = index" -->
+
+
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Delete</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-danger">
+          Do You Want To Delete the Selected Employee !
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="confirmDelete()">Confirm Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>

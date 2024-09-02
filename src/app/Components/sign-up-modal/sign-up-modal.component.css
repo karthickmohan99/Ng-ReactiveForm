@@ -24,6 +24,8 @@
 }
 
 
+/* pseudo element */
+/* examples: ::after, ::before, ::selection, ::marker, ::first-letter, ::first-line */
 .paraone::after{
   content:'Learn More.';
   color:blue;
